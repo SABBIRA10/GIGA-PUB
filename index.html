@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>বিজ্ঞাপন দেখুন</title>
+  <script src="https://ad.gigapub.tech/script?id=1143"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    #timer {
+      font-size: 24px;
+      color: green;
+      margin-top: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #028e29;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎯 আজকের কাজ</h2>
+  <p>নিচের বাটনে ক্লিক করে বিজ্ঞাপন দেখুন এবং ইনকাম করুন।</p>
+
+  <button onclick="watchAd()">▶ বিজ্ঞাপন দেখুন</button>
+  <div id="timer"></div>
+
+  <script>
+    function watchAd() {
+      window.showGiga()
+        .then(() => {
+          startCountdown(30);
+        })
+        .catch(e => {
+          alert('❌ বিজ্ঞাপন লোড করা যায়নি');
+        });
+    }
+
+    function startCountdown(seconds) {
+      const timerElement = document.getElementById("timer");
+      let counter = seconds;
+
+      const interval = setInterval(() => {
+        timerElement.innerText = `⏳ অপেক্ষা করুন: ${counter} সেকেন্ড`;
+        counter--;
+
+        if (counter < 0) {
+          clearInterval(interval);
+          timerElement.innerText = "✅ ধন্যবাদ! আপনি এখন ইনকাম পেতে পারেন।";
+          // এখানে আপনি reward function কল করতে পারেন
+        }
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>
